@@ -1,0 +1,43 @@
+Pareto Diagrams
+========================================================
+
+## Data
+The FBI reported the number of hate crimes by category for 2003 (http://www.fbi.gov/). 
+```{r}
+library(xtable)
+
+crime <- c("Race","Sexual Orientation","Religion","Ethnicity","Other")
+count <- c(4574,1430,1426,1236,49)
+
+hate.crimes <- data.frame(  
+    crime = crime,
+    count = count,
+    stringsAsFactors=FALSE)
+rm(crime, count)
+
+hate.crimes <- hate.crimes[order(hate.crimes$count, decreasing=TRUE), ]
+hate.crimes$crime <- factor(hate.crimes$crime, levels=hate.crimes$crime)
+hate.crimes$cumulative <- cumsum(hate.crimes$count)
+
+hate.crimes$percentage <- hate.crimes$count / sum(hate.crimes$count) * 100
+hate.crimes$cumulative.percentage <- cumsum(hate.crimes$percentage)
+hate.crimes$cumulative.percentage <- round(hate.crimes$cumulative.percentage, digits = 2)
+
+xt <- xtable(hate.crimes)
+print(xt, type="html")
+print(xt)
+```
+
+## Pareto Chart
+```{r fig.width=11}
+library(ggplot2)
+
+ggplot(hate.crimes, aes(x=crime)) +
+    geom_bar(aes(y=count), colour="palegreen4", fill="palegreen3", stat="identity") +
+    geom_point(aes(y=cumulative)) +
+    geom_path(aes(y=cumulative, group=1), colour="palegreen4") 
+
+# + geom_text(aes(label = cumulative.percentage, y = cumulative), colour="red", size = 3, angle = 45)
+
+```
+
