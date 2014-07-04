@@ -42,7 +42,12 @@ library(ggplot2)
 ggplot(hate.crimes, aes(x=crime)) +
     geom_bar(aes(y=count), colour="palegreen4", fill="palegreen3", stat="identity") +
     geom_point(aes(y=cumulative)) +
-    geom_path(aes(y=cumulative, group=1), colour="palegreen4") 
+    geom_path(aes(y=cumulative, group=1), colour="palegreen4") +
+    labs(title="Pareto Chart of Crime") +
+    theme(plot.title = element_text(lineheight=.8, face="bold")) +
+    xlab("Crime") +
+    ylab("Count") +
+    scale_y_continuous(breaks=seq(0, 9000, 1000))
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
