@@ -1,4 +1,4 @@
-Stem-and-leaf
+Stem and leaf
 ========================================================
 
 ## Data
@@ -26,3 +26,23 @@ stem(grades)
 ##   9 | 26
 ```
 
+
+```r
+stem(grades, scale = 2)
+```
+
+```
+## 
+##   The decimal point is 1 digit(s) to the right of the |
+## 
+##   5 | 2
+##   5 | 
+##   6 | 2
+##   6 | 68
+##   7 | 244
+##   7 | 66688
+##   8 | 224
+##   8 | 68
+##   9 | 2
+##   9 | 6
+```
