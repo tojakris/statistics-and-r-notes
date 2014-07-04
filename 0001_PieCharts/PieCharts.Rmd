@@ -1,6 +1,7 @@
 Pie Charts
 ========================================================
 
+## Data
 ```{r}
 operation.type <- c("Thoracic", "Bones and joints", 
                     "Eye, ear, nose, and throat", "General", "Abdominal", 
